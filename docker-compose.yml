@@ -1,0 +1,13 @@
+services:
+    resume-site:
+      build: . 
+      image: ${DOCKER_USER:-birender}/resume:latest
+      container_name: birender_resume
+      ports:
+        - 8080:80
+      restart: always
+      networks: 
+            - resume-net
+networks:
+    resume-net:
+      

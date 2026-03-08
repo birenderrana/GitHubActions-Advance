@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birender Rana - Cloud Support Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #334155;
+            --accent: #0ea5e9;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: var(--surface);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* --- Header --- */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1e293b 100%);
+            color: white;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+
+        header h2 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* --- Main Content --- */
+        main {
+            padding: 3rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* --- Summary & Skills --- */
+        .summary p {
+            color: var(--secondary);
+            font-size: 1.05rem;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-group h4 {
+            font-size: 0.95rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: var(--background);
+            color: var(--accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid #bae6fd;
+        }
+
+        /* --- Experience Timeline --- */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px solid var(--border);
+        }
+
+        .job {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .job:last-child {
+            margin-bottom: 0;
+        }
+
+        .job::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            top: 0.3rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--surface);
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .job-company {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--accent);
+        }
+
+        .job-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .job-location {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .job ul {
+            list-style-type: none;
+        }
+
+        .job ul li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            font-size: 0.95rem;
+        }
+
+        .job ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* --- Education --- */
+        .edu-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .edu-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .edu-degree {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .edu-school {
+            color: var(--secondary);
+        }
+
+        .edu-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Responsive & Print --- */
+        @media (max-width: 768px) {
+            .container {
+                margin: 0;
+                border-radius: 0;
+            }
+            .job-header {
+                flex-direction: column;
+            }
+        }
+
+        @media print {
+            body { background: white; }
+            .container { box-shadow: none; margin: 0; max-width: 100%; border-radius: 0; }
+            header { padding: 2rem; background: transparent; color: black; border-bottom: 2px solid black; }
+            header h1, header h2, .job-title, .job-company, h3, .tag { color: black; }
+            header h2 { font-weight: 600; }
+            .contact-info { color: #333; }
+            .tag { border-color: #ccc; }
+            main { padding: 2rem 0; }
+            section { margin-bottom: 2rem; }
+            .job { margin-bottom: 1.5rem; page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Birender Rana</h1>
+            <h2>Cloud Support Engineer @ Netskope | Network Security & SASE Specialist</h2>
+            <div class="contact-info">
+                <span>📍 Kashipur, India</span>
+                <span>🏆 JNCIS-Sec Certified</span>
+            </div>
+        </header>
+
+        <main>
+            <section class="summary">
+                <h3>Profile Summary</h3>
+                <p>
+                    Network Security Professional with 7+ years of experience specializing in the convergence of networking and cloud security. Currently bridging the gap between traditional infrastructure (BGP, IPsec) and modern SASE architectures at Netskope. My expertise lies in diagnosing complex interoperability issues between enterprise firewalls and cloud-edge solutions. With a deep foundation in Juniper and Fortinet ecosystems, I am focused on securing cloud-native environments and scaling ZTNA deployments for global enterprises.
+                </p>
+
+                <div class="skills-container">
+                    <div class="skill-group">
+                        <h4>Cloud Security</h4>
+                        <div class="tags">
+                            <span class="tag">Netskope SASE</span>
+                            <span class="tag">CASB</span>
+                            <span class="tag">ZTNA Policy Architecture</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Network Engineering</h4>
+                        <div class="tags">
+                            <span class="tag">BGP & OSPF</span>
+                            <span class="tag">IPsec & GRE</span>
+                            <span class="tag">HA Clustering</span>
+                            <span class="tag">Deep Packet Analysis</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Infrastructure & DevOps</h4>
+                        <div class="tags">
+                            <span class="tag">Linux Admin</span>
+                            <span class="tag">Docker/K8s Concepts</span>
+                            <span class="tag">Terraform</span>
+                            <span class="tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Professional Experience</h3>
+                <div class="timeline">
+                    
+                    <div class="job">
+                        <div class="job-header">
+                            <div>
+                                <span class="job-title">Cloud Support Engineer</span>
+                                <span class="job-company"> | Netskope</span>
+                            </div>
+                            <span class="job-date">November 2024 - Present</span>
+                        </div>
+                        <div class="job-location">Remote / Hybrid</div>
+                        <ul>
+                            <li>Resolve complex ZTNA & SASE incidents, troubleshooting Netskope Client, IPsec/GRE tunnels, and CASB policy enforcement.</li>
+                            <li>Drive successful PoC/PoV deployments for enterprise customers, ensuring smooth integration of cloud security architecture.</li>
+                            <li>Perform deep packet analysis (Wireshark) to identify traffic blocks and optimize cloud application performance.</li>
+                        </ul>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <div>
+                                <span class="job-title">Technical Support Engineer 2</span>
+                                <span class="job-company"> | Fortinet</span>
+                            </div>
+                            <span class="job-date">April 2024 - October 2024</span>
+                        </div>
+                        <div class="job-location">Bengaluru</div>
+                        <ul>
+                            <li>Managed high-priority escalations for FortiGate Firewalls, specializing in IPsec/SSL VPN, Web Filtering, and Application Control.</li>
+                            <li>Delivered Root Cause Analysis (RCA) for critical outages, restoring service within strict SLAs for partners and end-customers.</li>
+                            <li>Optimized firewall policies to balance security requirements with network performance.</li>
+                        </ul>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <div>
+                                <span class="job-title">Technical Support Engineer - Security</span>
+                                <span class="job-company"> | Juniper Networks</span>
+                            </div>
+                            <span class="job-date">January 2022 - April 2024</span>
+                        </div>
+                        <div class="job-location">Bengaluru</div>
+                        <ul>
+                            <li>Subject Matter Expert (SME) for SRX Series, troubleshooting Clustering (HA), IPsec VPNs, IDP/IPS, and AppSecure.</li>
+                            <li>Diagnosed advanced routing issues (BGP, OSPF) and switching protocols (LACP, STP) in complex enterprise topologies.</li>
+                            <li>Authored technical documentation and troubleshooting playbooks to drive customer self-service and reduce case volume.</li>
+                            <li>Managed critical accounts (Directors/GMs), ensuring effective communication and rapid resolution for P1 issues.</li>
+                        </ul>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <div>
+                                <span class="job-title">Network Implementation Engineer</span>
+                                <span class="job-company"> | Accenture</span>
+                            </div>
+                            <span class="job-date">January 2019 - January 2022</span>
+                        </div>
+                        <div class="job-location">Bengaluru</div>
+                        <ul>
+                            <li>Configured and managed Cisco ISR Routers & ASA Firewalls for global clients, handling remote access and device hardening.</li>
+                            <li>Executed BGP/OSPF/EIGRP routing changes on CE routers during critical maintenance windows.</li>
+                            <li>Coordinated with ISPs (AT&T, CenturyLink) to isolate and resolve WAN/MPLS circuit outages.</li>
+                            <li>Hands-on experience with Cisco Viptela vEdge routers for SD-WAN implementations.</li>
+                        </ul>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <div>
+                                <span class="job-title">Technical Support Engineer</span>
+                                <span class="job-company"> | Karvy Digikonnect</span>
+                            </div>
+                            <span class="job-date">May 2018 - January 2019</span>
+                        </div>
+                        <div class="job-location">Gwalior</div>
+                        <ul>
+                            <li>Managed Cisco Access Switches, handling Port Security, VLAN assignment, and L2 troubleshooting.</li>
+                            <li>Administered Active Directory, creating user accounts and managing permissions/policies.</li>
+                            <li>Maintained IT asset inventory and ensured compliance with ticketing SLAs.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <section>
+                <h3>Education</h3>
+                
+                <div class="edu-item">
+                    <div class="edu-degree">Bachelor of Technology (BTech) - Electronics and Communications Engineering</div>
+                    <div class="edu-school">Dr. A.P.J. Abdul Kalam Technical University</div>
+                    <div class="edu-date">2013 - 2017</div>
+                </div>
+
+                <div class="edu-item">
+                    <div class="edu-degree">Intermediate & High School</div>
+                    <div class="edu-school">Kendriya Vidyalaya</div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+name : biren-webpage
+
+on:
+    workflow_dispatch:
+
+jobs:
+    biren-data:
+        runs-on: self-hosted
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            - name: Login to dockerhub
+              uses: docker/login-action@v3
+              with:
+                username: ${{vars.DOCKER_USER}}
+                password: ${{secrets.DOCKER_PASS}}
+
+            - name: Build & Push to Docker Hub
+              uses: docker/build-push-action@v6
+              with:
+                  context: .
+                  push: true
+                  tags: |
+                    ${{ vars.DOCKERHUB_USER }}/github-actions-app:${{ github.ref_name }}
+                    ${{ vars.DOCKERHUB_USER }}/github-actions-app:latest
+                    ${{ vars.DOCKERHUB_USER }}/github-actions-app:${{ github.sha}}
+
+            
+        
