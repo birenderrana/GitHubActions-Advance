@@ -26,6 +26,14 @@ jobs:
                     ${{ vars.DOCKER_USER }}/github-actions-app:${{ github.ref_name }}
                     ${{ vars.DOCKER_USER }}/github-actions-app:latest
                     ${{ vars.DOCKER_USER }}/github-actions-app:${{ github.sha}}
+                
+            - name: Start the Web Server
+              run: |
+               # Stop old version if it's already there
+                 docker stop my-web-app || true
+                 docker rm my-web-app || true
+                 # Start the new version
+                 docker run -d --name my-web-app -p 8080:80 ${{ vars.DOCKER_USER }}/github-actions-app:latest
 
             
         
