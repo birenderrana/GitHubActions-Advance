@@ -1,0 +1,33 @@
+#So we can have a scneario where we wanted to test our app in multiple python version.
+#If we followed the basic process of creating worker then the code will be very lenghy. 
+#To mitigate this we can use matrix concept which will help in creating parallel instances with our requirements.  
+
+#In the below example we will test the code if it's as per standard syntax.
+
+name: matrix-test
+
+on:
+    push:
+        branches: [main]
+
+jobs:
+    python-validation:
+        runs-on: self-hosted
+        strategy:
+            fail-fast: false
+            matrix: 
+                python-version: ["3.11" , "3.12" , "3.13"]
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v4
+            
+            - name: setup python ${{matrix.python-version}}
+              uses: actions/setup-python@v5
+              with:
+                python-version: ${{matrix.python-version}}
+            
+            - name: install dependencies
+              run: pip install -r requirement.txt
+            
+            - name: Run the code
+              run: flake8 app.py
