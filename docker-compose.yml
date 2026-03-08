@@ -1,7 +1,7 @@
 services:
     resume-site:
       build: . 
-      image: ${DOCKER_USER:-birender}/resume:latest
+      image: ${DOCKER_USER}/github-actions-app:${DOCKER_TAG}
       container_name: birender_resume
       ports:
         - 8080:80
