@@ -1,4 +1,4 @@
-name: Deploy Flask App
+name: Deploy python app
 
 on:
     workflow_run:
@@ -12,8 +12,8 @@ jobs:
     deploy:
         if: github.event.workflow_run.conclusion == 'success'
         env:
-            DOCKERHUB_USER: ${{ vars.DOCKERHUB_USER }}
-            DOCKER_TAG: ${{ github.event.workflow_run.head_sha }}
+            DOCKER_USER: ${{ vars.DOCKER_USER }}
+            DOCKER_TAG: ${{ github.event.workflow_run.head_sha_short }}
 
         runs-on: self-hosted
 
