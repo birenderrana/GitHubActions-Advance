@@ -4,478 +4,685 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Birender Rana - Cloud Support Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --primary: #0f172a;
-            --secondary: #334155;
-            --accent: #06b6d4;
-            --accent-bright: #22d3ee;
-            --background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            /* Modern Color Palette */
+            --primary-900: #0f172a;
+            --primary-800: #1e293b;
+            --primary-600: #475569;
+            --primary-400: #94a3b8;
+            --primary-100: #f1f5f9;
+            --primary-50: #f8fafc;
+            
+            --accent-main: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-light: #eff6ff;
+            --accent-glow: rgba(37, 99, 235, 0.15);
+            
             --surface: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --text-light: #94a3b8;
             --border: #e2e8f0;
-            --success: #10b981;
-            --warning: #f59e0b;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
 
         body {
-            background: var(--background);
-            color: var(--text-main);
+            background-color: var(--primary-50);
+            color: var(--primary-800);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
+            -moz-osx-font-smoothing: grayscale;
+            padding: 3rem 1rem;
+            background-image: radial-gradient(var(--border) 1px, transparent 1px);
+            background-size: 24px 24px;
         }
 
         .container {
-            max-width: 1000px;
-            margin: 2rem auto;
+            max-width: 960px;
+            margin: 0 auto;
             background: var(--surface);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 20px 25px -5px rgba(0, 0, 0, 0.05);
             border-radius: 20px;
             overflow: hidden;
-            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            animation: slideUp 0.6s ease-out;
         }
 
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-bright) 100%);
-            opacity: 0.03;
-            pointer-events: none;
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* --- Header --- */
         header {
-            background: linear-gradient(135deg, var(--primary) 0%, #1e293b 100%);
+            background: var(--primary-900);
             color: white;
-            padding: 3rem;
+            padding: 4.5rem 3rem;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
+        /* Subtle background pattern for header */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.2) 0%, transparent 60%);
+            z-index: 1;
+        }
+
         header::after {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 300px;
-            height: 300px;
-            background: rgba(148, 204, 244, 0.1);
-            border-radius: 50%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4, #3b82f6);
+            background-size: 200% auto;
+            animation: gradientShine 3s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes gradientShine {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
         }
 
         header h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 800;
-            letter-spacing: -0.025em;
+            letter-spacing: -0.03em;
             margin-bottom: 0.5rem;
-            position: relative;
-            animation: fadeInUp 0.8s ease-out;
+            background: linear-gradient(to right, #fff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         header h2 {
-            font-size: 1.1rem;
+            font-size: 1.25rem;
             font-weight: 400;
-            color: #cbd5e1;
-            margin-bottom: 1rem;
-            position: relative;
-            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            letter-spacing: -0.01em;
         }
 
         .contact-info {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            font-size: 0.9rem;
-            color: var(--text-light);
-            position: relative;
-            animation: fadeInUp 0.8s ease-out 0.4s forwards;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            font-size: 0.95rem;
         }
 
-        .contact-info span {
+        .contact-item {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            transition: transform 0.3s ease, color 0.3s ease;
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 99px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+            transition: var(--transition);
         }
 
-        .contact-info span:hover {
+        .contact-item i {
+            color: #60a5fa;
+        }
+
+        a.contact-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
             transform: translateY(-2px);
-            color: var(--accent);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         /* --- Main Content --- */
         main {
-            padding: 3rem;
+            padding: 4rem;
         }
 
         section {
-            margin-bottom: 3rem;
-            position: relative;
+            margin-bottom: 4rem;
         }
 
-        section::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--accent), transparent);
-            transform: translateX(-50%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        section:hover::before {
-            opacity: 1;
+        section:last-child {
+            margin-bottom: 0;
         }
 
         h3 {
             font-size: 1.25rem;
-            color: var(--primary);
+            color: var(--primary-900);
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--border);
+            margin-bottom: 2.5rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            position: relative;
+            gap: 0.75rem;
         }
 
-        h3::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 100%;
-            width: 40px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-bright));
-            transition: height 0.3s ease;
-        }
-
-        h3:hover::before {
-            height: 8px;
+        h3 i {
+            background: var(--accent-light);
+            color: var(--accent-main);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 1rem;
         }
 
         /* --- Summary & Skills --- */
         .summary p {
-            color: var(--secondary);
-            font-size: 1.05rem;
+            color: var(--primary-600);
+            font-size: 1.1rem;
             line-height: 1.8;
-            position: relative;
-            z-index: 1;
+            text-align: justify;
         }
 
         .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+            padding: 2rem;
+            background: var(--primary-50);
+            border-radius: 16px;
+            border: 1px solid var(--border);
         }
 
         .skill-group h4 {
-            font-size: 0.95rem;
-            color: var(--primary);
-            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            color: var(--primary-800);
+            margin-bottom: 1.25rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            transition: transform 0.3s ease;
+            font-weight: 600;
         }
 
-        .skill-group h4:hover {
-            transform: translateX(5px);
+        .skill-group h4 i {
+            color: var(--accent-main);
         }
 
         .tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.6rem;
         }
 
         .tag {
-            background: linear-gradient(135deg, var(--background) 0%, var(--accent) 100%);
-            color: var(--accent);
+            background: var(--surface);
+            color: var(--primary-600);
             padding: 0.4rem 1rem;
-            border-radius: 9999px;
+            border-radius: 99px; /* Pill shape */
             font-size: 0.85rem;
             font-weight: 500;
-            border: 2px solid var(--accent);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tag::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s ease, height 0.6s ease;
-        }
-
-        .tag:hover::before {
-            width: 100px;
-            height: 100px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            cursor: default;
         }
 
         .tag:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
-            border-color: var(--accent-bright);
+            border-color: var(--accent-main);
+            color: var(--accent-main);
+            background: var(--accent-light);
+            transform: translateY(-1px);
         }
 
         /* --- Experience Timeline --- */
         .timeline {
             position: relative;
             padding-left: 2rem;
-            border-left: 2px solid var(--border);
+        }
+
+        /* The continuous line */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-main), var(--border) 20%);
+            border-radius: 2px;
         }
 
         .job {
             position: relative;
-            margin-bottom: 2.5rem;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-            border-radius: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 1px solid var(--border);
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--surface);
+            border-radius: 16px;
+            border: 1px solid transparent;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            transition: var(--transition);
         }
 
         .job:hover {
-            transform: translateX(10px);
-            box-shadow: 0 8px 20px rgba(6, 182, 212, 0.15);
-            border-color: var(--accent);
-        }
-
-        .job:nth-child(odd) {
-            background: linear-gradient(135deg, #fef3c7 0%, #ffffff 100%);
-        }
-
-        .job:nth-child(odd):hover {
-            background: linear-gradient(135deg, #fed7aa 0%, #ffffff 100%);
+            background: var(--surface);
+            border-color: var(--accent-light);
+            box-shadow: 0 10px 25px -5px var(--accent-glow);
+            transform: translateX(4px);
         }
 
         .job:last-child {
             margin-bottom: 0;
-            border-bottom: none;
         }
 
+        /* The timeline dot */
         .job::before {
             content: '';
             position: absolute;
-            left: -2.35rem;
-            top: 0.3rem;
-            width: 12px;
-            height: 12px;
-            background: var(--accent);
+            left: -2rem;
+            top: 2.25rem;
+            width: 14px;
+            height: 14px;
+            background: var(--surface);
             border-radius: 50%;
-            border: 3px solid var(--surface);
-            box-shadow: 0 0 0 2px var(--accent);
-            z-index: 2;
-            transition: transform 0.3s ease;
+            border: 2px solid var(--border);
+            transform: translateX(-50%);
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        /* Current job active dot */
+        .job:first-child::before {
+            border-color: var(--accent-main);
+            background: var(--accent-main);
+            box-shadow: 0 0 0 4px var(--accent-light);
         }
 
         .job:hover::before {
-            transform: scale(1.2);
+            border-color: var(--accent-main);
+            background: var(--accent-main);
+            transform: translateX(-50%) scale(1.2);
         }
 
         .job-header {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 1;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .job-title-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
         }
 
         .job-title {
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .job-title:hover {
-            color: var(--accent);
+            color: var(--primary-900);
+            line-height: 1.2;
         }
 
         .job-company {
             font-size: 1rem;
-            font-weight: 600;
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            transition: color 0.3s ease;
-        }
-
-        .job-company:hover {
-            color: var(--accent-bright);
-        }
-
-        .job-date {
-            font-size: 0.85rem;
-            color: var(--text-muted);
             font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .job-location {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            font-style: italic;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .job ul {
-            list-style-type: none;
-        }
-
-        .job ul li {
-            position: relative;
-            padding-left: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: var(--secondary);
-            font-size: 0.95rem;
-            position: relative;
-            padding-top: 0.25rem;
-            transition: padding-top 0.3s ease;
-        }
-
-        .job ul li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: bold;
-            transition: transform 0.3s ease;
-        }
-
-        .job ul li:hover {
-            padding-top: 0.5rem;
-        }
-
-        .job ul li::before {
-            transform: translateX(2px);
-        }
-
-        /* --- Education --- */
-        .edu-item {
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding: 1rem;
-            background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
-            border-radius: 12px;
-            border-left: 4px solid var(--accent);
-            transition: all 0.3s ease;
-        }
-
-        .edu-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.1);
-        }
-
-        .edu-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .edu-degree {
-            font-weight: 700;
-            color: var(--primary);
+            color: var(--accent-main);
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .edu-school {
-            color: var(--secondary);
+        .job-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.4rem;
+        }
+
+        .job-date {
+            font-size: 0.85rem;
+            color: var(--accent-main);
+            font-weight: 600;
+            background: var(--accent-light);
+            padding: 0.35rem 0.85rem;
+            border-radius: 6px;
+        }
+
+        .job-location {
+            font-size: 0.85rem;
+            color: var(--primary-400);
             display: flex;
             align-items: center;
-            gap: 0.3rem;
+            gap: 0.4rem;
+        }
+
+        .job ul {
+            list-style-type: none;
+            margin-top: 1rem;
+        }
+
+        .job ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary-600);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .job ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--primary-400);
+            font-weight: bold;
+            transition: var(--transition);
+        }
+
+        .job:hover ul li::before {
+            color: var(--accent-main);
+            transform: translateX(3px);
+        }
+
+        /* --- Education --- */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .edu-item {
+            padding: 2rem;
+            background: var(--primary-50);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .edu-item:hover {
+            border-color: var(--accent-main);
+            background: var(--surface);
+            box-shadow: 0 10px 25px -5px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .edu-degree {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-900);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .edu-school {
+            color: var(--primary-600);
+            font-weight: 500;
+            font-size: 0.95rem;
         }
 
         .edu-date {
             font-size: 0.85rem;
-            color: var(--text-muted);
-            display: flex;
+            color: var(--primary-400);
+            margin-top: 1rem;
+            display: inline-flex;
             align-items: center;
-            gap: 0.3rem;
+            gap: 0.4rem;
+            font-weight: 500;
         }
 
-        /* --- Animations --- */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .section-animate {
-            animation: fadeInUp 0.6s ease-out forwards;
-            opacity: 0;
-        }
-
-        .section-animate:nth-child(1) { animation-delay: 0.1s; }
-        .section-animate:nth-child(2) { animation-delay: 0.2s; }
-        .section-animate:nth-child(3) { animation-delay: 0.3s; }
-        .section-animate:nth-child(4) { animation-delay: 0.4s; }
-        .section-animate:nth-child(5) { animation-delay: 0.5s; }
-
-        /* --- Responsive & Print --- */
+        /* --- Responsive Design --- */
         @media (max-width: 768px) {
-            .container {
-                margin: 0;
-                border-radius: 0;
-            }
-            h1 { font-size: 2rem; }
-            h2 { font-size: 0.9rem; }
-            .skills-container }
+            body { padding: 0; background: var(--surface); }
+            .container { border-radius: 0; box-shadow: none; border: none; }
+            header { padding: 3rem 1.5rem; }
+            header h1 { font-size: 2.25rem; }
+            main { padding: 2.5rem 1.5rem; }
+            
+            .timeline { padding-left: 1.5rem; }
+            .job { padding: 1.5rem 0 1.5rem 1.5rem; border: none; background: transparent; }
+            .job:hover { background: transparent; box-shadow: none; transform: none; }
+            .job::before { left: -1.5rem; }
+            
+            .job-header { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+            .job-meta { align-items: flex-start; }
+            
+            .skills-container { padding: 1.5rem; }
+        }
+
+        /* --- Print Styles --- */
+        @media print {
+            body { background: white; padding: 0; font-size: 11pt; }
+            .container { box-shadow: none; margin: 0; max-width: 100%; border: none; animation: none; }
+            
+            header { padding: 2rem 0; background: transparent; color: black; text-align: left; }
+            header::before, header::after { display: none; }
+            header h1 { font-size: 2.5rem; color: #000; -webkit-text-fill-color: #000; margin-bottom: 0.25rem;}
+            header h2 { color: #333; font-weight: 600; margin-bottom: 1rem; }
+            
+            .contact-info { justify-content: flex-start; gap: 1rem; }
+            .contact-item { background: transparent; border: none; padding: 0; color: #333; }
+            .contact-item i { color: #555; }
+            
+            main { padding: 0; }
+            section { margin-bottom: 2rem; }
+            
+            h3 { color: #000; border-bottom: 2px solid #eee; padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
+            h3 i { display: none; }
+            
+            .summary p { color: #000; }
+            
+            .skills-container { padding: 0; border: none; gap: 1rem; display: block; }
+            .skill-group { margin-bottom: 1rem; }
+            .tag { border: 1px solid #ccc; padding: 0.2rem 0.6rem; font-size: 9pt; color: #000; }
+            
+            .timeline { padding-left: 0; }
+            .timeline::before { display: none; }
+            
+            .job { padding: 0; margin-bottom: 1.5rem; page-break-inside: avoid; border: none; box-shadow: none; }
+            .job::before { display: none; }
+            .job-title { color: #000; }
+            .job-company, .job-date { color: #333; }
+            .job-date { background: transparent; padding: 0; }
+            .job ul li { color: #000; margin-bottom: 0.5rem; }
+            .job ul li::before { content: '•'; color: #000; }
+            
+            .edu-grid { display: block; }
+            .edu-item { padding: 0; border: none; margin-bottom: 1rem; page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Birender Rana</h1>
+                <h2>Cloud Support Engineer @ Netskope | Network Security & SASE Specialist</h2>
+                <div class="contact-info">
+                    <span class="contact-item"><i class="fa-solid fa-location-dot"></i> Kashipur, India</span>
+                    <span class="contact-item"><i class="fa-solid fa-award"></i> JNCIS-Sec Certified</span>
+                    <a href="mailto:your.email@example.com" class="contact-item"><i class="fa-solid fa-envelope"></i> Email Me</a>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-item"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="summary">
+                <h3><i class="fa-solid fa-user-tie"></i> Profile Summary</h3>
+                <p>
+                    Network Security Professional with 7+ years of experience specializing in the convergence of networking and cloud security. Currently bridging the gap between traditional infrastructure (BGP, IPsec) and modern SASE architectures at Netskope. My expertise lies in diagnosing complex interoperability issues between enterprise firewalls and cloud-edge solutions. With a deep foundation in Juniper and Fortinet ecosystems, I am focused on securing cloud-native environments and scaling ZTNA deployments for global enterprises.
+                </p>
+
+                <div class="skills-container">
+                    <div class="skill-group">
+                        <h4><i class="fa-solid fa-cloud"></i> Cloud Security</h4>
+                        <div class="tags">
+                            <span class="tag">Netskope SASE</span>
+                            <span class="tag">CASB</span>
+                            <span class="tag">ZTNA Policy Architecture</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h4><i class="fa-solid fa-network-wired"></i> Network Engineering</h4>
+                        <div class="tags">
+                            <span class="tag">BGP & OSPF</span>
+                            <span class="tag">IPsec & GRE</span>
+                            <span class="tag">HA Clustering</span>
+                            <span class="tag">Deep Packet Analysis</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h4><i class="fa-solid fa-server"></i> Infrastructure & DevOps</h4>
+                        <div class="tags">
+                            <span class="tag">Linux Admin</span>
+                            <span class="tag">Docker/K8s Concepts</span>
+                            <span class="tag">Terraform</span>
+                            <span class="tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3><i class="fa-solid fa-briefcase"></i> Professional Experience</h3>
+                <div class="timeline">
+                    
+                    <div class="job">
+                        <div class="job-header">
+                            <div class="job-title-group">
+                                <span class="job-title">Cloud Support Engineer</span>
+                                <span class="job-company">Netskope</span>
+                            </div>
+                            <div class="job-meta">
+                                <span class="job-date">Nov 2024 - Present</span>
+                                <span class="job-location"><i class="fa-solid fa-earth-americas"></i> Remote / Hybrid</span>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Resolve complex ZTNA & SASE incidents, troubleshooting Netskope Client, IPsec/GRE tunnels, and CASB policy enforcement.</li>
+                            <li>Drive successful PoC/PoV deployments for enterprise customers, ensuring smooth integration of cloud security architecture.</li>
+                            <li>Perform deep packet analysis (Wireshark) to identify traffic blocks and optimize cloud application performance.</li>
+                        </ul>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <div class="job-title-group">
+                                <span class="job-title">Technical Support Engineer 2</span>
+                                <span class="job-company">Fortinet</span>
+                            </div>
+                            <div class="job-meta">
+                                <span class="job-date">Apr 2024 - Oct 2024</span>
+                                <span class="job-location"><i class="fa-solid fa-building"></i> Bengaluru</span>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Managed high-priority escalations for FortiGate Firewalls, specializing in IPsec/SSL VPN, Web Filtering, and Application Control.</li>
+                            <li>Delivered Root Cause Analysis (RCA) for critical outages, restoring service within strict SLAs for partners and end-customers.</li>
+                            <li>Optimized firewall policies to balance security requirements with network performance.</li>
+                        </ul>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <div class="job-title-group">
+                                <span class="job-title">Technical Support Engineer - Security</span>
+                                <span class="job-company">Juniper Networks</span>
+                            </div>
+                            <div class="job-meta">
+                                <span class="job-date">Jan 2022 - Apr 2024</span>
+                                <span class="job-location"><i class="fa-solid fa-building"></i> Bengaluru</span>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Subject Matter Expert (SME) for SRX Series, troubleshooting Clustering (HA), IPsec VPNs, IDP/IPS, and AppSecure.</li>
+                            <li>Diagnosed advanced routing issues (BGP, OSPF) and switching protocols (LACP, STP) in complex enterprise topologies.</li>
+                            <li>Authored technical documentation and troubleshooting playbooks to drive customer self-service and reduce case volume.</li>
+                            <li>Managed critical accounts (Directors/GMs), ensuring effective communication and rapid resolution for P1 issues.</li>
+                        </ul>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <div class="job-title-group">
+                                <span class="job-title">Network Implementation Engineer</span>
+                                <span class="job-company">Accenture</span>
+                            </div>
+                            <div class="job-meta">
+                                <span class="job-date">Jan 2019 - Jan 2022</span>
+                                <span class="job-location"><i class="fa-solid fa-building"></i> Bengaluru</span>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Configured and managed Cisco ISR Routers & ASA Firewalls for global clients, handling remote access and device hardening.</li>
+                            <li>Executed BGP/OSPF/EIGRP routing changes on CE routers during critical maintenance windows.</li>
+                            <li>Coordinated with ISPs (AT&T, CenturyLink) to isolate and resolve WAN/MPLS circuit outages.</li>
+                            <li>Hands-on experience with Cisco Viptela vEdge routers for SD-WAN implementations.</li>
+                        </ul>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">
+                            <div class="job-title-group">
+                                <span class="job-title">Technical Support Engineer</span>
+                                <span class="job-company">Karvy Digikonnect</span>
+                            </div>
+                            <div class="job-meta">
+                                <span class="job-date">May 2018 - Jan 2019</span>
+                                <span class="job-location"><i class="fa-solid fa-building"></i> Gwalior</span>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Managed Cisco Access Switches, handling Port Security, VLAN assignment, and L2 troubleshooting.</li>
+                            <li>Administered Active Directory, creating user accounts and managing permissions/policies.</li>
+                            <li>Maintained IT asset inventory and ensured compliance with ticketing SLAs.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <section>
+                <h3><i class="fa-solid fa-graduation-cap"></i> Education</h3>
+                
+                <div class="edu-grid">
+                    <div class="edu-item">
+                        <div class="edu-degree">Bachelor of Technology (BTech)</div>
+                        <div class="edu-school">Electronics and Communications Engineering<br>Dr. A.P.J. Abdul Kalam Technical University</div>
+                        <div class="edu-date"><i class="fa-regular fa-calendar"></i> 2013 - 2017</div>
+                    </div>
+
+                    <div class="edu-item">
+                        <div class="edu-degree">Intermediate & High School</div>
+                        <div class="edu-school">Kendriya Vidyalaya</div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>
