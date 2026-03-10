@@ -27,6 +27,7 @@ jobs:
                     ${{ vars.DOCKER_USER }}/github-actions-app:${{ github.ref_name }}
                     ${{ vars.DOCKER_USER }}/github-actions-app:latest
                     ${{ vars.DOCKER_USER }}/github-actions-app:${{ github.sha}}
+                    ${{ vars.DOCKER_USER }}/github-actions-app:${{ github.ref}}
               
 
             
