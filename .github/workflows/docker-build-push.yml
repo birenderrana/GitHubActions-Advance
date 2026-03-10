@@ -2,7 +2,7 @@ name : Docker Build & Push
 
 on:
     workflow_call:    # This option lets this workflow to be triggered (called) by another workflow.
-    workflow_dispatch:  
+   # workflow_dispatch:  
 
 jobs:
     biren-data:
