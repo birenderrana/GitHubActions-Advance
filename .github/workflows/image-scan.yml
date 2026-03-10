@@ -19,6 +19,7 @@ jobs:
                 username: ${{ vars.DOCKER_USER }}
                 password: ${{ secrets.DOCKER_PASS }}
             
+              #By default trivy uses x64 architecture but my image is built on arm64 as runner is arm64
             - name: Trivy Scanner
               uses: aquasecurity/trivy-action@0.35.0
               with:
@@ -26,3 +27,4 @@ jobs:
                 severity: 'CRITICAL,HIGH'
                 exit-code: '1'
                 trivyignore: ${{ github.workspace }}/.trivyignore
+                platform: 'linux/arm64'
