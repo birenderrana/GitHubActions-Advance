@@ -27,4 +27,4 @@ jobs:
                 severity: 'CRITICAL,HIGH'
                 exit-code: '1'
                 trivyignore: ${{ github.workspace }}/.trivyignore
-                platform: 'linux/arm64'
+                platform: linux/arm64
